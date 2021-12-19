@@ -10,7 +10,7 @@ for s, d in data:
 print(x * y)
 
 # part 2
-a = 0; x = 0; y = 0
+x = 0; y = 0; a = 0
 for s, d in data:
     if s == "up":           a -= d
     elif s == "down":       a += d
