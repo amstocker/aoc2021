@@ -8,14 +8,14 @@ def simulate(x, n):
         return simulate(7, n - x) + simulate(9, n - x)
 
 def simulate_list(data, n):
-    return sum([simulate(x, n) for x in data])
+    return sum(simulate(x, n) for x in data)
 
-
-with open("day6_input.txt") as f:
-    data = list(map(int, f.read().strip().split(',')))
+def get_data():
+    with open("day6_input.txt") as f:
+        return map(int, f.read().strip().split(','))
 
 # part 1
-print(simulate_list(data, 80))
+print(simulate_list(get_data(), 80))
 
 # part 2
-print(simulate_list(data, 256))
+print(simulate_list(get_data(), 256))
