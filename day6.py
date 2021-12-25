@@ -1,8 +1,7 @@
 import functools
 
-def get_data():
-    with open("day6_input.txt") as f:
-        return map(int, f.read().strip().split(','))
+with open("day6_input.txt") as f:
+    data = list(map(int, f.read().strip().split(',')))
 
 @functools.lru_cache
 def simulate(x, n):
@@ -15,7 +14,7 @@ def simulate_list(data, n):
     return sum(simulate(x, n) for x in data)
 
 # part 1
-print(simulate_list(get_data(), 80))
+print(simulate_list(data, 80))
 
 # part 2
-print(simulate_list(get_data(), 256))
+print(simulate_list(data, 256))
