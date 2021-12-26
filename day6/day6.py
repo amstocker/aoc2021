@@ -1,7 +1,7 @@
 from functools import lru_cache
 
-with open("day6_input.txt") as f:
-    data = list(map(int, f.read().strip().split(',')))
+from input import data
+
 
 @lru_cache
 def fish(x, n):
