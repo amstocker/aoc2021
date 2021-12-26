@@ -10,11 +10,8 @@ def simulate(x, n):
     else:
         return simulate(7, n - x) + simulate(9, n - x)
 
-def simulate_list(data, n):
-    return sum(simulate(x, n) for x in data)
-
 # part 1
-print(simulate_list(data, 80))
+print(sum(simulate(x, 80) for x in data))
 
 # part 2
-print(simulate_list(data, 256))
+print(sum(simulate(x, 256) for x in data))
