@@ -29,19 +29,17 @@ for j in range(height):
                 increases.append((k, l))
         paths[(i, j)]  = increases
 
-def basin_size(i, j):
-    front = deque(paths[(i, j)])
-    explored = set([(i, j)])
+def basin_size(c):
+    front = deque(paths[c])
+    explored = set([c])
     size = 1
     while len(front) > 0:
-        k, l = front.popleft()
-        if (k, l) in explored:
-            continue
-        else:
+        t = front.popleft()
+        if t not in explored:
             size += 1
-            explored.add((k, l))
-            front.extend(paths[(k, l)])
+            explored.add(t)
+            front.extend(paths[t])
     return size
 
-l = sorted(basin_size(i, j) for i in range(width) for j in range(height))
+l = sorted(basin_size((i, j)) for i in range(width) for j in range(height))
 print(l[-1] * l[-2] * l[-3])
