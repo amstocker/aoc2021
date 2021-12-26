@@ -1,9 +1,9 @@
-import functools
+from functools import lru_cache
 
 with open("day6_input.txt") as f:
     data = list(map(int, f.read().strip().split(',')))
 
-@functools.lru_cache
+@lru_cache
 def simulate(x, n):
     if n <= x:  return 1
     else:       return simulate(7, n - x) + simulate(9, n - x)
