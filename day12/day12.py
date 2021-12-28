@@ -1,3 +1,4 @@
+from functools import lru_cache
 from collections import defaultdict
 
 from input import data
@@ -12,6 +13,7 @@ for t in data:
     Paths[t[1]].append(t[0])
 
 # part 1
+@lru_cache
 def count_paths(a, b, history):
     if a in history:
         return 0
@@ -24,6 +26,7 @@ def count_paths(a, b, history):
 print(count_paths(Start, End, ()))
 
 # part 2
+@lru_cache
 def count_paths2(a, b, history, twice):
     if a in history:
         if twice or a == Start:
