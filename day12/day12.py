@@ -8,9 +8,9 @@ Start = "start"
 End = "end"
 
 Paths = defaultdict(list)
-for t in data:
-    Paths[t[0]].append(t[1])
-    Paths[t[1]].append(t[0])
+for a, b in data:
+    Paths[a].append(b)
+    Paths[b].append(a)
 
 # part 1
 @lru_cache
