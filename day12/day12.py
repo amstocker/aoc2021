@@ -19,7 +19,7 @@ def count_paths(a, b, history=()):
         return 0
     if a == b:
         return 1
-    if a[0].islower():
+    if a.islower():
         history += (a,)
     return sum(count_paths(t, b, history) for t in Paths[a])
 
@@ -35,7 +35,7 @@ def count_paths2(a, b, history=(), twice=False):
             twice = True
     if a == b:
         return 1
-    if a[0].islower():
+    if a.islower():
         history += (a,)
     return sum(count_paths2(t, b, history, twice) for t in Paths[a])
 
