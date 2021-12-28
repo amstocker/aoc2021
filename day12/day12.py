@@ -14,7 +14,7 @@ for t in data:
 
 # part 1
 @lru_cache
-def count_paths(a, b, history):
+def count_paths(a, b, history=()):
     if a in history:
         return 0
     if a == b:
@@ -23,11 +23,11 @@ def count_paths(a, b, history):
         history += (a,)
     return sum(count_paths(t, b, history) for t in Paths[a])
 
-print(count_paths(Start, End, ()))
+print(count_paths(Start, End))
 
 # part 2
 @lru_cache
-def count_paths2(a, b, history, twice):
+def count_paths2(a, b, history=(), twice=False):
     if a in history:
         if twice or a == Start:
             return 0
@@ -39,4 +39,4 @@ def count_paths2(a, b, history, twice):
         history += (a,)
     return sum(count_paths2(t, b, history, twice) for t in Paths[a])
 
-print(count_paths2(Start, End, (), False))
+print(count_paths2(Start, End))
