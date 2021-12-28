@@ -2,11 +2,11 @@ from input import seed, rules
 
 
 # part 1
-def iterate(seed, n=1):
+def iterate(seed, rules, n=1):
     if n <= 0:
         return seed
     new_seed = seed[0] + ''.join(rules[seed[i:i+2]] + seed[i+1] for i in range(len(seed) - 1))
-    return iterate(new_seed, n - 1)
+    return iterate(new_seed, rules, n - 1)
 
 def score(string):
     counts = 26 * [0]
@@ -14,7 +14,7 @@ def score(string):
         counts[ord(c) - 65] += 1
     return max(counts) - min(filter(lambda c: c > 0, counts))
 
-print(score(iterate(seed, n=10)))
+print(score(iterate(seed, rules, n=10)))
 
 
 # part 2
@@ -42,7 +42,7 @@ def iterate_pair_counts(counts, rules, n=1):
         new_counts[pair_to_index(rules[pair] + pair[1])] += counts[i]
     return iterate_pair_counts(new_counts, rules, n - 1)
 
-def pair_counts_to_char_counts(counts, seed):
+def score_pair_counts(counts, seed):
     char_counts = 26 * [0]
     for i in range(26 * 26):
         pair = index_to_pair(i)
@@ -52,11 +52,7 @@ def pair_counts_to_char_counts(counts, seed):
         if (j == (ord(seed[0]) - 65)) or (j == (ord(seed[-1]) - 65)):
             char_counts[j] = (char_counts[j] + 1) // 2
         else:
-            char_counts[j]  = char_counts[j] // 2
-    return char_counts
-
-def score_pair_counts(counts, seed):
-    char_counts = pair_counts_to_char_counts(counts, seed)
+            char_counts[j] = char_counts[j] // 2
     return max(char_counts) - min(filter(lambda c: c > 0, char_counts))
 
 pair_counts = iterate_pair_counts(seed_to_pair_counts(seed), rules, n=40)
